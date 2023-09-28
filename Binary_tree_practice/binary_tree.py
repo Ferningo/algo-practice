@@ -46,4 +46,39 @@ def DFS(root):
     return result
 
 
-print(DFS(my_tree.root))
+def recursive_DFS(root, myArray):
+    if root != None:
+        myArray.append(root.data)
+        recursive_DFS(root.left, myArray)
+        recursive_DFS(root.right, myArray)
+    return myArray
+
+
+def BFS(root):
+    queue = []
+    result = []
+    queue.append(root)
+    while len(queue) > 0:
+        current = queue.pop()
+        result.append(current.data)
+
+        if current.left != None:
+            queue.insert(0, current.left)
+
+        if current.right != None:
+            queue.insert(0, current.right)
+
+    return result
+
+
+def tree_includes(root, target):
+    if root == None:
+        return False
+
+    if root.val == target:
+        return True
+
+    return tree_includes(root.left, target) or tree_includes(root.right, target)
+
+
+print(BFS(my_tree.root))
