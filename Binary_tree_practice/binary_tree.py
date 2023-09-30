@@ -81,4 +81,38 @@ def tree_includes(root, target):
     return tree_includes(root.left, target) or tree_includes(root.right, target)
 
 
-print(BFS(my_tree.root))
+def maximum_depth(root):
+    stack = [root]
+    result = 0
+
+    while stack:
+
+        current = stack.pop()
+        if current.left != None or current.right != None:
+            result += 1
+
+        if current.right != None:
+            stack.append(current.right)
+
+        if current.left != None:
+            stack.append(current.left)
+
+    return result
+
+
+def invert_binary_tree(root):
+    if root == None:
+        return None
+
+    temp = root.right
+    root.right = root.left
+    root.left = temp
+
+    invert_binary_tree(root.left)
+    invert_binary_tree(root.right)
+
+
+invert_binary_tree(a)
+print("success!")
+
+print(DFS(a))
